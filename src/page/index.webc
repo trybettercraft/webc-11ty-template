@@ -6,3 +6,11 @@ layout: base.webc
 <div class="bg-red-100">
     Landing page is here
 </div>
+
+<div webc:if="true">
+    Hello
+</div>
+
+<div webc:for="myItem of [1, 2, 3]">
+    <p @text="myItem"></p>
+</div>
