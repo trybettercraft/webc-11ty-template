@@ -1,0 +1,119 @@
+media:
+  input: src/media
+  output: /media
+  provider: "s3"
+pages:
+  editor:
+    tailwind: true
+    templatingLanguage: njk
+  filenameConvention: '{year}-{month}-{day}-{primary}.njk'
+  paths:
+    sitePath: src/_data/site.json
+    baseTemplatePath: src/_includes/base.njk
+    symbolCollectionPath: src/_includes/components
+    templateCollectionPath: src/_includes/layouts
+    pagesCollectionPath: src/page
+content:
+  - name: articles
+    label: Articles
+    type: collection
+    path: src/articles
+    view:
+      fields: [title, description, permalink, published]
+    fields:
+      - name: layout
+        type: reference
+        label: Layout
+        default: "layout/2025-10-24-blog-template.njk"
+        options:
+          collection: template
+          value: "layouts/{name}"
+          createTemplate: "/{owner}/{repo}/{branch}/collection/template/new?hideSidebar=true"
+          createText: Create new layout
+          linkText: Edit
+          linkTemplate: "/{owner}/{repo}/{branch}/collection/template/edit/src%2F_includes%2F{value}?hideSidebar=true"
+      - name: title
+        label: Title
+        type: string
+        required: true
+      - name: created_date
+        label: Creation date
+        type: date
+        required: true
+        options:
+          format: dd-MM-yyyy
+          min: 2023-12-24
+      - name: cover
+        label: Cover Image
+        type: image
+        required: true
+        description: URL of the cover image
+      - name: description
+        label: Description
+        type: string
+        required: true
+      - name: permalink
+        label: Slug
+        type: string
+        required: true
+      - name: published
+        label: Published
+        type: boolean
+        description: This page will be published if selected
+      - name: no-index
+        label: No index
+        type: boolean
+        description: This page will not be indexed by the search engine
+      - name: tags
+        label: Tags
+        list:
+          default: [blogs]
+        type: string
+      - name: body
+        label: Content
+        type: rich-text
+  - name: terms
+    label: Terms
+    type: collection
+    path: src/policies
+    view:
+      fields: [title, description, permalink, published]
+    fields:
+      - name: layout
+        label: Layout
+        type: reference
+        default: "layouts/2025-11-09-terms.njk"
+        options:
+          collection: template
+          value: "layouts/{name}"
+          createTemplate: "/{owner}/{repo}/{branch}/collection/template/new?hideSidebar=true"
+          createText: Create new layout
+          linkText: Edit layout
+          linkTemplate: "/{owner}/{repo}/{branch}/collection/template/edit/src%2F_includes%2F{value}?hideSidebar=true"
+      - name: title
+        label: Title
+        type: string
+        required: true
+      - name: heading
+        label: Heading
+        type: string
+        required: true
+      - name: description
+        label: Description
+        type: string
+        required: true
+      - name: permalink
+        label: Slug
+        type: string
+        required: true
+      - name: published
+        label: Published
+        type: boolean
+        description: This page will be published if selected
+      - name: no-index
+        label: No index
+        type: boolean
+        description: This page will not be indexed by the search engine
+      - name: body
+        label: Content
+        type: rich-text
