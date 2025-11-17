@@ -1,0 +1,12 @@
+---
+---
+
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<title @text="title"></title>
+	</head>
+	<body @html="content">        
+    </body>
+</html>

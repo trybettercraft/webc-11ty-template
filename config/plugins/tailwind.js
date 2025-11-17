@@ -6,6 +6,14 @@ import postcss from "postcss";
 import tailwindcss from "@tailwindcss/postcss";
 
 export default function (eleventyConfig) {
+  const processor = postcss([
+    //compile tailwind
+    tailwindcss(),
+
+    //minify tailwind css
+    cssnano({ preset: "default" }),
+  ]);
+
   //compile tailwind before eleventy processes the files
   eleventyConfig.on("eleventy.before", async () => {
     const tailwindInputPath = path.resolve("./src/tailwind/index.css");
@@ -24,7 +32,19 @@ export default function (eleventyConfig) {
       to: tailwindOutputPath,
     });
 
-    fs.writeFileSync(tailwindOutputPath, result.css);
+    // Only write if content has changed to prevent watch loops
+    const outputPath = path.resolve(tailwindOutputPath);
+    let shouldWrite = true;
+    if (fs.existsSync(outputPath)) {
+      const existingContent = fs.readFileSync(outputPath, "utf8");
+      if (existingContent === result.css) {
+        shouldWrite = false;
+      }
+    }
+
+    if (shouldWrite) {
+      fs.writeFileSync(tailwindOutputPath, result.css);
+    }
   });
 
   eleventyConfig.addTransform(
@@ -33,20 +53,12 @@ export default function (eleventyConfig) {
       if (outputPath && outputPath.endsWith(".html")) {
         return content.replace(
           /<\/head>/,
-          '<link rel="stylesheet" href="/assets/styles/index.css"></head>',
+          '<link rel="stylesheet" href="/assets/styles/index.css"></head>'
         );
       }
       return content;
-    },
+    }
   );
-
-  const processor = postcss([
-    //compile tailwind
-    tailwindcss(),
-
-    //minify tailwind css
-    cssnano({ preset: "default" }),
-  ]);
 
   return {
     dir: { input: "src", output: "dist" },

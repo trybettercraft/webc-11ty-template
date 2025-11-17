@@ -2,7 +2,7 @@
 import collections from "./config/collections.js";
 import filters from "./config/filters.js";
 import passthroughs from "./config/passthroughs.js";
-import sitemap from "./config/plugins/sitemap.js";
+import pluginWebc from "@11ty/eleventy-plugin-webc";
 
 // Dynamic plugin loading
 import fs from "fs";
@@ -25,6 +25,7 @@ export default async function (eleventyConfig) {
   collections(eleventyConfig);
   filters(eleventyConfig);
   passthroughs(eleventyConfig);
+  pluginWebc(eleventyConfig);
 
   return {
     dir: {
@@ -33,9 +34,9 @@ export default async function (eleventyConfig) {
       includes: "_includes",
       data: "_data",
     },
-    templateFormats: ["md", "njk", "html", "liquid", "txt"],
-    markdownTemplateEngine: "njk",
-    htmlTemplateEngine: "njk",
-    dataTemplateEngine: "njk",
+    templateFormats: ["md", "webc", "html", "liquid", "txt"],
+    markdownTemplateEngine: "webc",
+    htmlTemplateEngine: "webc",
+    dataTemplateEngine: "webc",
   };
 }
