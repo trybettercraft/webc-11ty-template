@@ -1,7 +1,7 @@
 {
-  "title": "Axrail AI",
-  "description": "A modern 11ty website template with PagesCMS, GrapesJS, and AlpineJS",
-  "site": "https://d3off8xvntze7z.cloudfront.net",
-  "favicon": "https://d31ol4a85wtdul.cloudfront.net/assets/trybettercraft/11ty-template/src/media/0d813e_3c02b8f5642f46f898760d9ae65aa303~mv2.png",
-  "headCode": "<script>\n  console.log('From the whole item')\n</script>"
+  "title": "WebC",
+  "description": "WebC template to be used with PagesCMS",
+  "site": "",
+  "favicon": "",
+  "headCode": ""
 }
