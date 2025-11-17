@@ -1,7 +1,6 @@
 ---
 permalink: /
 layout: base.webc
-title: This is the index page
 ---
 
 <div class="bg-red-100">
