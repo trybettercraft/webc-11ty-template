@@ -5,11 +5,11 @@ media:
 pages:
   editor:
     tailwind: true
-    templatingLanguage: njk
-  filenameConvention: '{year}-{month}-{day}-{primary}.njk'
+    templatingLanguage: webc
+  filenameConvention: '{year}-{month}-{day}-{primary}.webc'
   paths:
     sitePath: src/_data/site.json
-    baseTemplatePath: src/_includes/base.njk
+    baseTemplatePath: src/_includes/base.webc
     symbolCollectionPath: src/_includes/components
     templateCollectionPath: src/_includes/layouts
     pagesCollectionPath: src/page
@@ -24,7 +24,7 @@ content:
       - name: layout
         type: reference
         label: Layout
-        default: "layout/2025-10-24-blog-template.njk"
+        default: "layout/blog.webc"
         options:
           collection: template
           value: "layouts/{name}"
@@ -82,7 +82,7 @@ content:
       - name: layout
         label: Layout
         type: reference
-        default: "layouts/2025-11-09-terms.njk"
+        default: "layouts/terms.webc"
         options:
           collection: template
           value: "layouts/{name}"
